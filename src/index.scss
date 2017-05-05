@@ -1,0 +1,43 @@
+@import "style/bourbon/bourbon";
+@import "style/neat/neat";
+@import "style/base/base";
+@import url('https://fonts.googleapis.com/css?family=Roboto');
+.body,
+html {
+    font-family: "Roboto", "Arial", sans-serif;
+    background-color: #eee;
+    h1,
+    h2,
+    p {
+        color: #333;
+    }
+}
+
+header {
+    @include grid-container;
+    text-align: center;
+    padding: 2em;
+    h1 {
+        font-size: 3em;
+    }
+    h2 {
+        font-size: 1.5em;
+    }
+}
+
+main {
+    ul {
+        display: flex;
+        align-content: center;
+        justify-content: space-around;
+        li {
+            text-align: center;
+        }
+    }
+    article {
+        max-width: 500px;
+        background: white;
+        padding: 2em;
+        margin: 1em auto;
+    }
+}
