@@ -1,6 +1,7 @@
 import React from 'react'
 import Async from 'react-promise'
 import database from './database'
+import ReactMarkdown from 'react-markdown'
 
 const blogRef = database.ref('blog/')
 
@@ -16,8 +17,9 @@ function Blog(props) {
                         return (
                             <article key={posts[post]}>
                                 <h3>{posts[post].title}</h3>
+                                <small>{posts[post].date}</small>
                                 <section>
-                                    {posts[post].body}
+                                    <ReactMarkdown source={posts[post].body} />
                                 </section>
                             </article>
                         )
