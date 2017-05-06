@@ -1,7 +1,7 @@
 import React from 'react'
 import Async from 'react-promise'
 import database from './database'
-import Blog from './Blog'
+import Blog from './blog/Blog'
 
 const linksRef = database.ref('links/')
 

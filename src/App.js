@@ -7,10 +7,10 @@ function App(props) {
   return {
     render() {
       return (
-      <span>
-        <Header/>
-        <Main/>
-      </span>)
+        <div>
+          <Header />
+          <Main />
+        </div>)
     }
   }
 }

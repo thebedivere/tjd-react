@@ -14,13 +14,12 @@ html {
 }
 
 header {
-    @include grid-container;
     text-align: center;
     padding: 2em;
     h1 {
         font-size: 3em;
     }
-    h2 {
+    p {
         font-size: 1.5em;
     }
 }
@@ -41,7 +40,9 @@ main {
         background: white;
         padding: 2em;
         margin: 1em auto;
-        small {
+        header {
+            text-align: left;
+            padding: 0;
             color: #888;
             line-height: 3;
         }

@@ -11,26 +11,26 @@ function Header(props) {
         },
         props,
         render: () => {
-            return (
-                <span>{instance.state.info}</span>
+            return (<header>
+                {instance.state.info}
+            </header>
             )
         }
     }, React.Component.prototype)
-
 
     infoRef.on('value', (snapshot) => {
         instance.setState((prevProps, props) => {
             let info = snapshot.val()
             return {
                 info:
-                (<header>
+                (<div>
                     <h1>
                         {info.title}
                     </h1>
                     {info
                         .tagline
-                        .map((i) => <h2 key={i}>{i}</h2>)}
-                </header>)
+                        .map((i) => <p key={i}>{i}</p>)}
+                </div>)
 
             }
         })
