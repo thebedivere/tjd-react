@@ -5,6 +5,7 @@
   "dependencies": {
     "express": "^4.15.2",
     "firebase": "^3.9.0",
+    "prop-types": "^15.5.8",
     "react": "^15.5.4",
     "react-dom": "^15.5.4",
     "react-markdown": "^2.5.0",

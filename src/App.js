@@ -6,8 +6,11 @@ function App(props) {
 
   return {
     render() {
-      return (<span><Header/>
-      <Main/></span>)
+      return (
+      <span>
+        <Header/>
+        <Main/>
+      </span>)
     }
   }
 }

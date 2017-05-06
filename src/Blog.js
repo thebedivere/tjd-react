@@ -5,8 +5,31 @@ import ReactMarkdown from 'react-markdown'
 
 const blogRef = database.ref('blog/')
 
+function showBody(body) {
+    if (body) {
+        return (
+            <section>
+                <ReactMarkdown source={body} />
+            </section>
+        )
+    }
+    return ''
+}
 function Blog(props) {
-    let instance = Object.create(React.Component.prototype)
+    let instance = Object.assign({
+        props,
+        state: {
+            blog: ''
+        },
+        render: () => {
+            return (
+                <div>
+                    {instance.state.posts}
+                </div>
+            )
+        }
+    }, React.Component.prototype)
+
     blogRef.on('value', function (snapshot) {
         instance.setState((prevProps, props) => {
             let posts = snapshot.exportVal()
@@ -15,30 +38,18 @@ function Blog(props) {
                     .keys(posts)
                     .map((post) => {
                         return (
-                            <article key={posts[post]}>
+                            <article key={posts[post].title}>
                                 <h3>{posts[post].title}</h3>
                                 <small>{posts[post].date}</small>
-                                <section>
-                                    <ReactMarkdown source={posts[post].body} />
-                                </section>
+                                {showBody(posts[post].body)}
                             </article>
                         )
                     })
             }
         })
     })
-    instance.props = props
-    instance.state = {
-        blog: ''
-    }
 
-    instance.render = () => {
-        return (
-            <div>
-                {instance.state.posts}
-            </div>
-        )
-    }
+
     return instance
 
 }
