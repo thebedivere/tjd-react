@@ -11,23 +11,22 @@ html {
     p {
         color: #333;
     }
-}
-
-header {
-    text-align: center;
-    padding: 2em;
-    h1 {
-        font-size: 3em;
-    }
-    p {
-        font-size: 1.5em;
+    .page-header {
+        text-align: center;
+        padding: 2em;
+        h1 {
+            font-size: 3em;
+        }
+        p {
+            font-size: 1.5em;
+        }
     }
 }
 
 main {
     ul {
         max-width: 800px;
-        margin: 0 auto;
+        margin: 1em auto 2em;
         display: flex;
         align-content: center;
         justify-content: space-around;
@@ -36,15 +35,28 @@ main {
         }
     }
     article {
+        text-align: left!important;
         max-width: 500px;
         background: white;
         padding: 2em;
         margin: 1em auto;
         header {
-            text-align: left;
+            h2 {
+                font-size: 2em;
+            }
+            p {
+                color: #888;
+                font-size: 0.9em;
+            }
             padding: 0;
             color: #888;
-            line-height: 3;
         }
+    }
+    section {
+        padding: 2em;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: flex-start;
     }
 }

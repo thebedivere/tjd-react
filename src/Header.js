@@ -7,11 +7,11 @@ const infoRef = database
 function Header(props) {
     let instance = Object.assign({
         state: {
-            info: '',
+            info: ''
         },
         props,
         render: () => {
-            return (<header>
+            return (<header className="page-header">
                 {instance.state.info}
             </header>
             )

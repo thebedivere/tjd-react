@@ -1,9 +1,7 @@
 import React from 'react'
 import Async from 'react-promise'
 import database from '../database'
-import BlogBody from './BlogBody'
-
-
+import BlogPost from './BlogPost'
 
 function Blog(props) {
     const blogRef = database.ref('blog/'),
@@ -22,24 +20,27 @@ function Blog(props) {
         )
     }
 
-    blogRef.on('value', function (snapshot) {
-        instance.setState((prevProps, props) => {
-            let posts = snapshot.exportVal()
-            return {
-                posts: Object
-                    .keys(posts)
-                    .map((post) => {
-                        return (
-                            <article key={posts[post].title}>
-                                <h2>{posts[post].title}</h2>
-                                <header>{posts[post].date}</header>
-                                <BlogBody body={posts[post].body} />
-                            </article>
-                        )
-                    })
-            }
+    blogRef
+        .on('value', function (snapshot) {
+            instance.setState((prevProps, props) => {
+                let posts = snapshot.exportVal()
+                return {
+                    posts: Object
+                        .keys(posts)
+                        .map((post) => {
+                            return (
+                                    <BlogPost key={posts[post].title}
+                                        author={posts[post].author}
+                                        title={posts[post].title}
+                                        date={posts[post].date}
+                                        body={posts[post].body}
+                                        tags={posts[post].tags}
+                                        published={posts[post].published}/>
+                            )
+                        })
+                }
+            })
         })
-    })
     return instance
 }
 
