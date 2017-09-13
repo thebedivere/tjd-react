@@ -1,46 +1,49 @@
 import React from 'react'
-import Header from './Header'
-import Main from './Main'
+import Memorize from './Memorize/Memorize'
 import Auth from './Auth'
+import Home from './Home'
 import EditBlog from './blog/EditBlog'
+import { Provider } from 'react-redux'
 
 import {
   BrowserRouter as Router,
   Route,
-  Link,
   Switch
 } from 'react-router-dom'
 
-function App(props) {
-  const Home = () => (
-    <div>
-      <Header />
-      <Main />
-    </div>
+const App = ({ store }) => {
+  const HomePage = () => (
+    <Home />
   )
-  const Account = () => (
+  const AccountPage = () => (
     <div>
       <Auth />
     </div>
   )
-  const Edit = () => (
-    <EditBlog/>
+  const EditPage = ({ match }) => (
+    <EditBlog id={match.params.id} />
+  )
+  const MemorizePage = () => (
+    <Memorize />
   )
 
   return {
-    render() {
+    render () {
       return (
+        <Provider store={store}>
           <Router>
             <Switch>
-              <Route exact path='/' component={Home}/>
-              <Route path='/account' component={Account}/>
-              <Route path='/edit/:id' component={Edit} />
+              <Route exact path='/' component={HomePage} />
+              <Route path='/account' component={AccountPage} />
+              <Route path='/edit/:id' component={EditPage} />
+              <Route path='/memorize' component={MemorizePage} />
             </Switch>
           </Router>
+        </Provider>
+
       )
     }
   }
 }
-
 
 export default App

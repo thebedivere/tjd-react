@@ -1,43 +1,22 @@
 import React from 'react'
-import Async from 'react-promise'
-import database from './database'
 
-const infoRef = database
-    .ref('info/')
-function Header(props) {
-    let instance = Object.assign({
-        state: {
-            info: ''
-        },
-        props,
-        render: () => {
-            return (<header className="page-header">
-                {instance.state.info}
-            </header>
-            )
-        }
-    }, React.Component.prototype)
-
-    infoRef.on('value', (snapshot) => {
-        instance.setState((prevProps, props) => {
-            let info = snapshot.val()
-            return {
-                info:
-                (<div>
-                    <h1>
-                        {info.title}
-                    </h1>
-                    {info
-                        .tagline
-                        .map((i) => <p key={i}>{i}</p>)}
-                </div>)
-
-            }
-        })
-
-
-    })
-    return instance
+const Header = (props) => {
+  const render = () => {
+    const props = instance.props
+    return (<header className='page-header'>
+      <h1>{props.title}</h1>
+      {props.tagline && props.tagline.map((i) => <p key={i}>{i}</p>)}
+    </header>
+    )
+  }
+  const instance = Object.assign({
+    state: {
+      info: ''
+    },
+    props,
+    render
+  }, React.Component.prototype)
+  return instance
 }
 
 export default Header

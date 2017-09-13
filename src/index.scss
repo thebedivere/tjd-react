@@ -23,8 +23,7 @@ html {
     }
 }
 
-main {
-    ul {
+.links { 
         max-width: 800px;
         margin: 1em auto 2em;
         display: flex;
@@ -58,5 +57,45 @@ main {
         flex-wrap: wrap;
         justify-content: center;
         align-items: flex-start;
+    }
+
+.game {
+    font-size: 2em;
+    display: inline;
+    span, input {
+        display: inline;
+        width: auto;
+        align-self: center;
+    }
+    input {
+        width: 5em;
+        margin-right: 1em;
+    }
+}
+
+.col {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+footer {
+    font-size: 0.8em;
+    ul {
+        padding-top: 2em;
+        display: flex;
+        justify-content: flex-start;
+        li {
+            margin-right: 0.5em;
+        }
+    }
+}
+
+form {
+    width: 100%;
+    max-width: 500px;
+    textarea {
+        height: 250px;
     }
 }

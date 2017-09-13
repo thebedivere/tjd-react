@@ -3,5 +3,8 @@
     "search.exclude": {
         "**/node_modules": false,
         "**/bower_components": true
-    }
+    },
+    "standard.enable": true,
+    "eslint.enable": false,
+    "standard.autoFixOnSave": true
 }
