@@ -25,11 +25,10 @@ const home = ({ dispatch }) => {
     return (
       <div>
         { props.info &&
-          // <Header title={props.info.title} tagline={props.info.tagline} />
-          <Header />
+          <Header title={props.info.title} tagline={props.info.tagline} />
         }
         { props.links &&
-          <Links /* links={props.links} */ />
+          <Links links={props.links} />
         }
 
         <Blog />

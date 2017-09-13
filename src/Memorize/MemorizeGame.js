@@ -11,7 +11,6 @@ function MemorizeGame (props) {
     render,
     componentDidUpdate: function () {
             // document.getElementsByTagName("INPUT")[0].focus()
-      console.log(document.getElementsByTagName('INPUT').length)
     }
   }, React.Component.prototype)
   function eachWord (words) {

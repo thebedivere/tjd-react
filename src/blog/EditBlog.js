@@ -7,7 +7,7 @@ const EditBlog = (props) => {
     const databaseRef = database.ref('blog/' + instance.props.id)
     databaseRef.on('value', (snapshot) => {
       const value = snapshot.val()
-      console.log(value)
+
       if (value) {
         instance.setState(value)
       }
@@ -15,7 +15,6 @@ const EditBlog = (props) => {
   }
 
   const componentDidUpdate = () => {
-    console.log('hello')
     handleSubmit()
   }
 
