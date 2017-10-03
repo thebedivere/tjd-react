@@ -1,7 +1,5 @@
-/* global localStorage */
-
 import { actions } from '../actions/actionTypes'
-const initialState = {
+export const initialState = {
   info: {
     title: 'loading...'
   }

@@ -1,23 +1,23 @@
 /* global describe it expect */
 
-import * as reducers from './appReducers'
+import appReducers, { initialState } from './appReducers'
 import * as actions from '../actions/actionTypes'
 
 describe('reducers', () => {
   it('should have initial state', () => {
-    expect(reducers.initialState).toBeDefined()
+    expect(initialState).toBeDefined()
   })
   it('should return the initial state', () => {
-    expect(reducers.appReducers(undefined, {})).toEqual(
-      reducers.initialState)
+    expect(appReducers(undefined, {})).toEqual(
+      initialState)
   })
   it('should handle SET_INFO', () => {
-    expect(reducers.appReducers(reducers.initialState, {})).toEqual({
+    expect(appReducers(initialState, {})).toEqual({
       info: {
         title: 'loading...'
       }
     })
-    expect(reducers.appReducers([], {
+    expect(appReducers([], {
       type: actions.SET_INFO,
       info: {
         title: 'foo bar'
@@ -27,7 +27,7 @@ describe('reducers', () => {
         title: 'foo bar'
       }
     })
-    expect(reducers.appReducers([], {
+    expect(appReducers([], {
       type: actions.SET_USER,
       user: {
         email: 'foo@bar.com'
@@ -39,7 +39,7 @@ describe('reducers', () => {
       },
       token: 'foobar'
     })
-    expect(reducers.appReducers([], {
+    expect(appReducers([], {
       type: actions.SET_LINKS,
       links: [
         'foo', 'bar'
@@ -49,7 +49,7 @@ describe('reducers', () => {
         'foo', 'bar'
       ]
     })
-    expect(reducers.appReducers([], {
+    expect(appReducers([], {
       type: actions.SET_BLOG_POSTS,
       blogPosts: {
         foo: {},
