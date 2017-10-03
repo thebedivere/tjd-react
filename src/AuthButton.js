@@ -1,6 +1,6 @@
 import React from 'react'
 
-function AuthButton (props) {
+const AuthButton = props => {
   const instance = Object.assign({
     props,
     render

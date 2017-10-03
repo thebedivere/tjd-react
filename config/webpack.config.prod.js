@@ -168,10 +168,10 @@ module.exports = {
   // We use PostCSS for autoprefixing only.
   postcss: function () {
     return [ autoprefixer({
-        browsers: [
-          '>1%', 'last 4 versions', 'Firefox ESR', 'not ie < 9' // React doesn't support IE8 anyway
-        ]
-      }) ]
+      browsers: [
+        '>1%', 'last 4 versions', 'Firefox ESR', 'not ie < 9' // React doesn't support IE8 anyway
+      ]
+    }) ]
   },
   plugins: [
     // Makes some environment variables available in index.html. The public URL is

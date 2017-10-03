@@ -1,8 +1,7 @@
 import React from 'react'
-import Memorize from './Memorize/Memorize'
-import Auth from './Auth'
-import Home from './Home'
-import EditBlog from './blog/EditBlog'
+import Async from 'react-code-splitting'
+import database from './database'
+// import Home from './Home'
 import { Provider } from 'react-redux'
 
 import {
@@ -12,19 +11,23 @@ import {
 } from 'react-router-dom'
 
 const App = ({ store }) => {
-  const HomePage = () => (
-    <Home />
+  const HomePage = props => (
+    // <Home test='hello world'
+    //   database={database} />
+    <Async
+      load={import(/* webpackChunkName: "Home" */ './Home')}
+      componentProps={{...props, database}}
+      test='Hello world!' />
   )
   const AccountPage = () => (
-    <div>
-      <Auth />
-    </div>
+    <Async load={import(/* webpackChunkName: "Auth" */ './Auth')} />
   )
   const EditPage = ({ match }) => (
-    <EditBlog id={match.params.id} />
+    <Async id={match.params.id} database={database} load={import(/* webpackChunkName: "Memorize" */ './Memorize/Memorize')} />
+    // <EditBlog id={match.params.id} database={database} />
   )
   const MemorizePage = () => (
-    <Memorize />
+    <Async load={import(/* webpackChunkName: "Memorize" */ './Memorize/Memorize')} />
   )
 
   return {
@@ -40,7 +43,6 @@ const App = ({ store }) => {
             </Switch>
           </Router>
         </Provider>
-
       )
     }
   }

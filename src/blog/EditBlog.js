@@ -1,10 +1,10 @@
 import React from 'react'
-import database from '../database'
+
 import BlogPost from './BlogPost'
 
 const EditBlog = (props) => {
   const componentDidMount = () => {
-    const databaseRef = database.ref('blog/' + instance.props.id)
+    const databaseRef = instance.props.database.ref('blog/' + instance.props.id)
     databaseRef.on('value', (snapshot) => {
       const value = snapshot.val()
 
@@ -35,7 +35,7 @@ const EditBlog = (props) => {
       tags: instance.state.tags || [],
       published: instance.state.published || false
     }
-    database
+    instance.props.database
             .ref('blog/' + instance.props.id)
             .set(post)
   }

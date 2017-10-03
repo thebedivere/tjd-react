@@ -1,15 +1,14 @@
 import React from 'react'
 import _ from 'underscore'
-import database from '../database'
 import BlogPost from './BlogPost'
 import { setBlogPosts, setUser } from '../actions/actionTypes'
 import { connect } from 'react-redux'
 
 const blog = ({ dispatch }) => {
-  const blogRef = database.ref('blog/')
   const render = () => {
     const props = instance.props
     const posts = cleanPosts(props.blogPosts)
+
     return (
       <div>
         {posts &&
@@ -20,6 +19,7 @@ const blog = ({ dispatch }) => {
     )
   }
   const componentDidMount = () => {
+    const blogRef = instance.props.database.ref('blog/')
     blogRef.on('value', function (snapshot) {
       instance.props.onBlogPosts(snapshot.val())
     })
@@ -29,11 +29,15 @@ const blog = ({ dispatch }) => {
     render,
     componentDidMount
   }, React.Component.prototype)
+
   return instance
 }
 
-const mapStateToProps = state => {
-  return state
+const mapStateToProps = (state, ownProps) => {
+  return {
+    ...state,
+    ...ownProps
+  }
 }
 
 const mapDispatchToProps = dispatch => {

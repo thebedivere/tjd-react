@@ -1,6 +1,5 @@
 /* global localStorage */
 
-import _ from 'underscore'
 import React from 'react'
 import firebase from 'firebase'
 import AuthButton from './AuthButton'

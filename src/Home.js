@@ -3,19 +3,19 @@ import Header from './Header'
 import Links from './Links'
 import Blog from './blog/Blog'
 import { connect } from 'react-redux'
-import database from './database'
 import { setInfo, setLinks } from './actions/actionTypes'
 
 const home = ({ dispatch }) => {
   const componentDidMount = () => {
+    console.log(instance.props)
     // get info
-    const info = database.ref('/info')
+    const info = instance.props.database.ref('/info')
     info.on('value', (snapshot) => {
       instance.props.onInfo(snapshot.val())
     })
 
     // get links
-    const links = database.ref('/links')
+    const links = instance.props.database.ref('/links')
     links.on('value', (snapshot) => {
       instance.props.onLinks(snapshot.val())
     })
@@ -24,6 +24,7 @@ const home = ({ dispatch }) => {
     const props = instance.props
     return (
       <div>
+        { props.test }
         { props.info &&
           <Header title={props.info.title} tagline={props.info.tagline} />
         }
@@ -31,7 +32,7 @@ const home = ({ dispatch }) => {
           <Links links={props.links} />
         }
 
-        <Blog />
+        <Blog database={instance.props.database} />
       </div>
 
     )
@@ -41,21 +42,26 @@ const home = ({ dispatch }) => {
     render,
     componentDidMount
   }, React.Component.prototype)
+
   return instance
 }
 
-const mapStateToProps = state => {
-  return state
-}
-
-const mapDispatchToProps = dispatch => {
+const mapDispatchToProps = (dispatch, ownProps = {}) => {
   return {
     onInfo: info => {
       dispatch(setInfo(info))
     },
     onLinks: links => {
       dispatch(setLinks(links))
-    }
+    },
+    ...ownProps
+  }
+}
+
+const mapStateToProps = (state, ownProps = {}) => {
+  return {
+    ...state,
+    ...ownProps
   }
 }
 
