@@ -1,6 +1,6 @@
-const express = require('express'),
-    app = express()
+const express = require('express')
+const app = express()
 
-    app.use(express.static('build'))
+app.use(express.static('build'))
 
-    app.listen(8000)
+app.listen(8000)

@@ -7,6 +7,8 @@ import './index.scss'
 
 const store = createStore(appReducers, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__())
 
+require('offline-plugin/runtime').install()
+
 ReactDOM.render(
   <App store={store} />,
   document.getElementById('root')

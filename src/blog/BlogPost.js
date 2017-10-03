@@ -1,12 +1,13 @@
 import React from 'react'
-import moment from 'moment'
 import BlogBody from './BlogBody'
+import format from 'date-fns/format'
+
 function BlogPost (props) {
   return (
     <article>
       <header>
         <h2><a href={`/edit/${props.id}`}>{props.title}</a></h2>
-        <p>{moment(props.date).format('MM-DD-YYYY')}</p>
+        <p>{format(props.date, 'MM-DD-YYYY')}</p>
         <p>By {props.author}</p>
       </header>
       <main>

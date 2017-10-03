@@ -1,7 +1,9 @@
 const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
-// const OfflinePlugin = require('offline-plugin')
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
 const webpack = require('webpack')
+const OfflinePlugin = require('offline-plugin')
+
 const exclude = [
   /node_modules/,
   /spec\.js$/,
@@ -12,6 +14,7 @@ const exclude = [
 
 module.exports = {
   entry: [
+    'babel-polyfill',
     path.join(__dirname, '../src', 'index.js')
   ],
   module: {
@@ -55,17 +58,14 @@ module.exports = {
     }),
     new webpack.DefinePlugin({
       'NODE_ENV': process.env.NODE_ENV || 'development'
-    })
+    }),
+    new BundleAnalyzerPlugin({
+      analyzerPort: 7176
+    }),
+    // generate service worker and app manifest
+    new OfflinePlugin()
   ],
   resolve: {
-    alias: {
-      Assets: path.resolve(__dirname, 'src/assets'),
-      Styles: path.resolve(__dirname, 'src/assets/styles'),
-      Img: path.resolve(__dirname, 'src/img'),
-      Mocks: path.resolve(__dirname, 'test/mocks'),
-      app: path.resolve(__dirname, 'src/app'),
-      /* eslint camelcase: 0 */
-      node_modules: path.resolve(__dirname, './node_modules')
-    }
+    alias: {}
   }
 }

@@ -1,5 +1,5 @@
 import React from 'react'
-import _ from 'underscore'
+import { mapObject, values } from 'underscore'
 import BlogPost from './BlogPost'
 import { setBlogPosts, setUser } from '../actions/actionTypes'
 import { connect } from 'react-redux'
@@ -52,7 +52,7 @@ const mapDispatchToProps = dispatch => {
 }
 
 function cleanPosts (posts) {
-  return _.values(_.mapObject(posts, (val, key) => {
+  return values(mapObject(posts, (val, key) => {
     return Object.assign({}, {id: key}, {...val})
   }))
 }

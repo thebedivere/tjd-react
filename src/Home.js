@@ -7,7 +7,6 @@ import { setInfo, setLinks } from './actions/actionTypes'
 
 const home = ({ dispatch }) => {
   const componentDidMount = () => {
-    console.log(instance.props)
     // get info
     const info = instance.props.database.ref('/info')
     info.on('value', (snapshot) => {
