@@ -1,6 +1,6 @@
 import React from 'react'
 import Async from 'react-code-splitting'
-import database, { firestore } from './database'
+import database, { firestore, requestDocument } from './database'
 // import Home from './Home'
 import { Provider } from 'react-redux'
 
@@ -9,6 +9,9 @@ import {
   Route,
   Switch
 } from 'react-router-dom'
+
+const requestTest = requestDocument('test', 'test')
+requestTest().then(i => console.log(i))
 
 const App = ({ store }) => {
   // define page components
