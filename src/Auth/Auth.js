@@ -6,7 +6,7 @@ import firebase from 'firebase/app'
 import 'firebase/auth'
 import AuthButton from './AuthButton'
 import { connect } from 'react-redux'
-import { setUser } from './actions/actionTypes'
+import { setUser } from '../actions/actionTypes'
 
 const auth = ({ dispatch }) => {
   firebase

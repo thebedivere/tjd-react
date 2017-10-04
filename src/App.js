@@ -1,6 +1,6 @@
 import React from 'react'
 import Async from 'react-code-splitting'
-import database from './database'
+import database, { firestore } from './database'
 // import Home from './Home'
 import { Provider } from 'react-redux'
 
@@ -11,25 +11,27 @@ import {
 } from 'react-router-dom'
 
 const App = ({ store }) => {
+  // define page components
   const HomePage = props => (
-    // <Home test='hello world'
-    //   database={database} />
     <Async
       load={import(/* webpackChunkName: "Home" */ './Home')}
-      componentProps={{...props, database}}
+      componentProps={{...props, database, firestore}}
       test='Hello world!' />
   )
+
   const AccountPage = () => (
-    <Async load={import(/* webpackChunkName: "Auth" */ './Auth')} />
+    <Async load={import(/* webpackChunkName: "Auth" */ './Auth/Auth')} />
   )
+
   const EditPage = ({ match }) => (
-    <Async id={match.params.id} database={database} load={import(/* webpackChunkName: "Memorize" */ './Memorize/Memorize')} />
-    // <EditBlog id={match.params.id} database={database} />
+    <Async componentProps={{ database, id: match.params.id }}load={import(/* webpackChunkName: "Memorize" */ './Memorize/Memorize')} />
   )
+
   const MemorizePage = () => (
     <Async load={import(/* webpackChunkName: "Memorize" */ './Memorize/Memorize')} />
   )
 
+  // return render
   return {
     render () {
       return (

@@ -4,14 +4,23 @@ import Links from './Links'
 import Blog from './blog/Blog'
 import { connect } from 'react-redux'
 import { setInfo, setLinks } from './actions/actionTypes'
+import { firestore } from './database'
 
 const home = ({ dispatch }) => {
   const componentDidMount = () => {
     // get info
-    const info = instance.props.database.ref('/info')
-    info.on('value', (snapshot) => {
-      instance.props.onInfo(snapshot.val())
-    })
+    const infoRef = firestore.collection('info').doc('site')
+
+    infoRef.get().then(doc => {
+      if (doc.exists) {
+        instance.props.onInfo(doc.data())
+      } else {
+        console.log('document does not exist :(')
+      }
+    }).catch(err => console.error(err))
+    // info.on('value', (snapshot) => {
+    //   instance.props.onInfo(snapshot.val())
+    // })
 
     // get links
     const links = instance.props.database.ref('/links')
