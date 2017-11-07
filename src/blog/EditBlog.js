@@ -1,17 +1,18 @@
 import React from 'react'
-
 import BlogPost from './BlogPost'
+import { createBlogFunctions } from './blogFunctions'
+import { watchDocument } from '../database'
 
 const EditBlog = (props) => {
   const componentDidMount = () => {
-    const databaseRef = instance.props.database.ref('blog/' + instance.props.id)
-    databaseRef.on('value', (snapshot) => {
-      const value = snapshot.val()
-
-      if (value) {
-        instance.setState(value)
-      }
+    console.log(instance.props.id)
+    watchDocument('blog', instance.props.id, doc => {
+      instance.setState(doc)
     })
+
+    const funcs = createBlogFunctions(instance.props.firestore)
+    funcs.checkIfPostExists('84PkFsOTr7XxZJfqcOEM', doc => instance.setState({ redirect: false }))
+        // funcs.createNewPost().then(post => instance.setState({ id: `/edit/${post.id}` }))
   }
 
   const componentDidUpdate = () => {
@@ -36,8 +37,8 @@ const EditBlog = (props) => {
       published: instance.state.published || false
     }
     instance.props.database
-            .ref('blog/' + instance.props.id)
-            .set(post)
+      .ref('blog/' + instance.props.id)
+      .set(post)
   }
   function handleChange (event) {
     instance.setState({
@@ -49,9 +50,12 @@ const EditBlog = (props) => {
     return (
       <main>
         <a href='/'>Return home</a>
-        <BlogPost
-          {...instance.state}
+
+        {instance.state &&
+          <BlogPost
+            {...instance.state}
           />
+        }
         <section>
           <form>
             <div>

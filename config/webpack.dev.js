@@ -8,7 +8,8 @@ module.exports = merge(common, {
   output: {
     filename: '[name]-bundle.js',
     path: path.resolve(__dirname, '..', 'tmp'),
-    chunkFilename: '[name]-bundle.js'
+    chunkFilename: '[name]-bundle.js',
+    publicPath: '/'
   },
   devServer: {
     compress: false, // enables gzip

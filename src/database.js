@@ -11,8 +11,6 @@ export const database = firebase.database()
 // initialize firestore
 export const firestore = firebase.firestore()
 
-// todo: create a function to request a document.
-// Maybe a function that returns a function?
 export function requestDocument (collection, document) {
   return () => {
     const docRef = firestore.collection(collection).doc(document)
@@ -26,6 +24,18 @@ export function requestDocument (collection, document) {
       }
     }).catch(err => err)
   }
+}
+
+export function watchDocument (collection, document, callback) {
+  return firestore.collection(collection).doc(document).onSnapshot(doc => {
+    if (doc.exists) {
+      callback(doc.data())
+    } else {
+      return {
+        error: 'document does not exist :('
+      }
+    }
+  })
 }
 
 export default database

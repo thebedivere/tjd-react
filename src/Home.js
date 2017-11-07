@@ -4,13 +4,12 @@ import Links from './Links'
 import Blog from './blog/Blog'
 import { connect } from 'react-redux'
 import { setInfo, setLinks } from './actions/actionTypes'
-import { requestDocument } from './database'
+import { requestDocument, watchDocument } from './database'
 
 const home = ({ dispatch }) => {
   const componentDidMount = () => {
     // get info
-    const requestInfo = requestDocument('info', 'site')
-    requestInfo().then(info => instance.props.onInfo(info))
+    watchDocument('info', 'site', info => instance.props.onInfo(info))
     // get links
     const requestLinks = requestDocument('info', 'links')
     requestLinks().then(links => instance.props.onLinks(links))

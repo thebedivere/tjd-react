@@ -16,9 +16,11 @@ function BlogPost (props) {
       <footer>
         <ul>
           <li>tags:</li>
-          {props.tags && props.tags.split(',').map(tag => (
-            <li key={tag}><a href={`/tag/${tag}`}>{tag}</a></li>
-        ))}
+          {
+            // props.tags && props.tags.split(',').map(tag => (
+            // <li key={tag}><a href={`/tag/${tag}`}>{tag}</a></li>
+        // ))
+        }
         </ul>
       </footer>
     </article>
