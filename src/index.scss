@@ -12,20 +12,27 @@ html {
         color: #333;
     }
     .page-header {
+        color: blue;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
         text-align: center;
-        padding: 2em;
+        padding: 1.5em;
         h1 {
-            font-size: 3em;
+            font-size: 4em;
+            margin-bottom: 0.2em;
+            flex-basis: 100%;
         }
         p {
-            font-size: 1.5em;
+            font-size: 1.1em;
+            margin: 0 0.5em;
         }
     }
 }
 
 .links { 
-        max-width: 800px;
-        margin: 1em auto 2em;
+        max-width: 512px;
+        margin: .5em auto 1em;
         display: flex;
         align-content: center;
         justify-content: space-around;
@@ -42,13 +49,21 @@ html {
         header {
             h2 {
                 font-size: 2em;
+                margin-bottom: .2em;
+                flex-basis: 100%;
+
             }
             p {
                 color: #888;
                 font-size: 0.9em;
             }
+            p + P {
+                margin-left: .5em;
+            }
             padding: 0;
             color: #888;
+            display: flex;
+            flex-wrap: wrap;
         }
     }
     section {

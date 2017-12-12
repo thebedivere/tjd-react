@@ -55,17 +55,6 @@ module.exports = {
       inject: 'body',
       template: './public/index.ejs',
       hash: true
-    }),
-    new webpack.DefinePlugin({
-      'NODE_ENV': process.env.NODE_ENV || 'development'
-    }),
-    new BundleAnalyzerPlugin({
-      analyzerPort: 7176
-    }),
-    // generate service worker and app manifest
-    new OfflinePlugin()
-  ],
-  resolve: {
-    alias: {}
-  }
+    })
+  ]
 }
