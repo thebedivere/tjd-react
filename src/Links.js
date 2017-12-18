@@ -1,9 +1,7 @@
 import React from 'react'
 import _ from 'underscore'
 
-function Links (props) {
-  const render = () => {
-    const props = instance.props
+const Links = props => {
     const links = _.values(props.links, val => val)
     return (
       <ul className='links'>
@@ -17,13 +15,6 @@ function Links (props) {
         }
       </ul>
     )
-  }
-  let instance = Object.assign({
-    props,
-    state: {},
-    render
-  }, React.Component.prototype)
-  return instance
 }
 
 export default Links
