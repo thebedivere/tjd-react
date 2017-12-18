@@ -114,3 +114,14 @@ form {
         height: 250px;
     }
 }
+
+.work {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    background: black;
+    color: white;
+    font-family: monospace;
+    max-width: 250px;
+    padding: 1em;
+}

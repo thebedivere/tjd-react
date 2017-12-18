@@ -1,5 +1,5 @@
 import React from 'react'
-import { mapObject, values } from 'underscore'
+import { mapObject, values, sortBy, filter } from 'underscore'
 import BlogPost from './BlogPost'
 import { setBlogPosts, setUser } from '../actions/actionTypes'
 import { connect } from 'react-redux'
@@ -13,7 +13,7 @@ const blog = ({ dispatch }) => {
       <div>
         {posts &&
           posts.map(post => (
-            <BlogPost{...post} />
+            <BlogPost{...post} key={post.date}/>
           ))}
       </div>
     )
@@ -21,7 +21,8 @@ const blog = ({ dispatch }) => {
   const componentDidMount = () => {
     const blogRef = instance.props.database.ref('blog/')
     blogRef.on('value', function (snapshot) {
-      instance.props.onBlogPosts(snapshot.val())
+      const posts = filter(sortBy(snapshot.val(), 'date').reverse(), post => post && post.title)
+      instance.props.onBlogPosts(posts)
     })
   }
   const instance = Object.assign({
