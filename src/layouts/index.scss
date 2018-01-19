@@ -1,0 +1,128 @@
+@import "../style/bourbon/bourbon";
+@import "../style/neat/neat";
+@import "../style/base/base";
+@import "../style/font-awesome-4.7.0/scss/font-awesome.scss";
+@import url('https://fonts.googleapis.com/css?family=Roboto');
+.body,
+html {
+    font-family: "Roboto", "Arial", sans-serif;
+    background-color: #eee;
+    h1,
+    h2,
+    p {
+        color: #333;
+    }
+    .page-header {
+        color: blue;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        text-align: center;
+        padding: 1.5em;
+        h1 {
+            font-size: 4em;
+            margin-bottom: 0.2em;
+            flex-basis: 100%;
+        }
+        p {
+            font-size: 1.1em;
+            margin: 0 0.5em;
+        }
+    }
+}
+
+.links { 
+        max-width: 512px;
+        margin: .5em auto 1em;
+        display: flex;
+        align-content: center;
+        justify-content: space-around;
+        li {
+            text-align: center;
+        }
+    }
+    article {
+        text-align: left!important;
+        max-width: 500px;
+        background: white;
+        padding: 2em;
+        margin: 1em auto;
+        header {
+            h2 {
+                font-size: 2em;
+                margin-bottom: .2em;
+                flex-basis: 100%;
+
+            }
+            p {
+                color: #888;
+                font-size: 0.9em;
+            }
+            p + P {
+                margin-left: .5em;
+            }
+            padding: 0;
+            color: #888;
+            display: flex;
+            flex-wrap: wrap;
+        }
+    }
+    section {
+        padding: 2em;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: flex-start;
+    }
+
+.game {
+    font-size: 2em;
+    display: inline;
+    span, input {
+        display: inline;
+        width: auto;
+        align-self: center;
+    }
+    input {
+        width: 5em;
+        margin-right: 1em;
+    }
+}
+
+.col {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+footer {
+    font-size: 0.8em;
+    ul {
+        padding-top: 2em;
+        display: flex;
+        justify-content: flex-start;
+        li {
+            margin-right: 0.5em;
+        }
+    }
+}
+
+form {
+    width: 100%;
+    max-width: 500px;
+    textarea {
+        height: 250px;
+    }
+}
+
+.work {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    background: black;
+    color: white;
+    font-family: monospace;
+    max-width: 250px;
+    padding: 1em;
+}
