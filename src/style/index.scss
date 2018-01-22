@@ -125,3 +125,18 @@ form {
     max-width: 250px;
     padding: 1em;
 }
+
+.not-found {
+    display: flex;
+    flex-direction: column;
+    h1, h2, p, a {
+        text-align: center;
+    }
+    h1 {
+        font-size: 3em;
+    }
+    img {
+        display: block;
+        margin: 1em auto;
+    }
+}
