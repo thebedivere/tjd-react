@@ -1,5 +1,4 @@
 import React from 'react'
-import _ from 'underscore'
 import BlogBody from './BlogBody'
 import format from 'date-fns/format'
 import { Link } from 'react-router-dom'

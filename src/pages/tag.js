@@ -4,10 +4,10 @@ import { withProps } from 'recompose'
 import { compose } from 'redux'
 import { connect } from 'react-redux'
 import { firestoreConnect, withFirestore } from 'react-redux-firebase'
-import Header from '../../components/Header/'
-import Blog from '../../components/blog/Blog'
+import Header from '../components/Header/'
+import Blog from '../components/blog/Blog'
 
-const IndexPage = ({firestore, tag, info, blog}) => (
+const TagPage = ({firestore, tag, info, blog}) => (
   <div>
     {info && <Header title={info.site.title} />}
     <h2 style={{textAlign: 'center'}}>Viewing posts tagged with {tag}</h2>
@@ -27,4 +27,4 @@ export default compose(
     info: state.firestore.data.info,
     blog: state.firestore.data.blog
   }))
- )(IndexPage)
+ )(TagPage)

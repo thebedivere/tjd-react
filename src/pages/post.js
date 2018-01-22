@@ -1,17 +1,18 @@
 import React from 'react'
-import EditBlog from '../../components/blog/EditBlog'
-import BlogPost from '../../components/blog/BlogPost'
-import Auth from '../../components/Auth/Auth'
-import Link from 'gatsby-link'
+import EditBlog from '../components/blog/EditBlog'
 import { compose } from 'redux'
 import { connect } from 'react-redux'
 import { firestoreConnect } from 'react-redux-firebase'
+import { Link } from 'react-router-dom'
 import { withProps } from 'recompose'
+import Auth from '../components/Auth/Auth'
+import BlogPost from '../components/blog/BlogPost'
 
-const EditPage = ({firestore, blog, postId}) => {
+const PostPage = ({firestore, blog, postId}) => {
   return <div>
     <Link to='/'>Return home</Link>
     <BlogPost
+      id={postId}
       {...blog}
       />
     <Auth firebase={firestore}>
@@ -32,4 +33,4 @@ export default compose(
   connect((state, props) => ({
     blog: state.firestore.data.blog && state.firestore.data.blog[props.postId]
   }))
-)(EditPage)
+)(PostPage)
