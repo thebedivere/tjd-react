@@ -2,13 +2,13 @@ import React from 'react'
 import { compose, withHandlers } from 'recompose'
 import NewPost from './NewPost'
 
-const EditBlog = props =>
+const EditBlog = ({ published, handleChange, title, body, firestore }) =>
   <section>
     <div className='right-menu'>
       <NewPost />
       <div className='checkbox'>
         <label>Published</label>
-        <input type='checkbox' id='published' checked={props.published || false} onChange={props.handleChange} />
+        <input type='checkbox' id='published' checked={published || false} onChange={handleChange} />
       </div>
     </div>
     <form>
@@ -17,15 +17,15 @@ const EditBlog = props =>
         <input
           type='text'
           id='title'
-          value={props.title || ''}
-          onChange={props.handleChange} />
+          value={title || ''}
+          onChange={handleChange} />
       </div>
       <div>
         <label htmlFor='body'>Body</label>
         <textarea
           id='body'
-          value={props.body || ''}
-          onChange={props.handleChange} />
+          value={body || ''}
+          onChange={handleChange} />
       </div>
     </form>
   </section>

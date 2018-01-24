@@ -1,15 +1,12 @@
 import React from 'react'
 import BlogPost from './BlogPost'
 
-const Blog = ({blogPosts}) => {
-  return (
-    <div>
-      {blogPosts &&
+const Blog = ({blogPosts}) =>
+  <div>
+    {blogPosts &&
         blogPosts.map(post => (
           <BlogPost {...post} key={post.title} />
           ))}
-    </div>
-  )
-}
+  </div>
 
 export default Blog

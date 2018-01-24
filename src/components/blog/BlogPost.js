@@ -3,16 +3,16 @@ import BlogBody from './BlogBody'
 import format from 'date-fns/format'
 import { Link } from 'react-router-dom'
 
-const BlogPost = props =>
+const BlogPost = ({ title, id, date, author, body }) =>
   <article>
     <header>
-      {props.title && <h2><Link to={`/post/${props.id}`}>{props.title}</Link></h2>}
-      {props.date && <p>{format(props.date, 'MM-DD-YYYY')}</p>}
-      {props.author && <p>By {props.author}</p>}
+      {title && <h2><Link to={`/post/${id}`}>{title}</Link></h2>}
+      {date && <p>{format(date, 'MM-DD-YYYY')}</p>}
+      {author && <p>By {author}</p>}
     </header>
-    {props.body &&
+    {body &&
       <main>
-        <BlogBody body={props.body} />
+        <BlogBody body={body} />
       </main>
     }
   </article>
