@@ -19,7 +19,7 @@ export default compose(
   withFirestore,
   firebaseConnect(),
   connect(({firebase: { auth }}) => ({auth})),
-  firestoreConnect(['info', 'blog']), // or { collection: 'todos' }
+  firestoreConnect(['info', 'blog']),
   connect((state) => ({
     info: state.firestore.data.info,
     blog: state.firestore.data.blog
@@ -27,6 +27,13 @@ export default compose(
  )(IndexPage)
 
 function filterPosts (posts, auth) {
-  if (auth.email === 'joshua.aarond@gmail.com') return posts
-  return _.filter(posts, post => post.published)
+  const _posts = cleanPosts(posts)
+  if (auth.email === 'joshua.aarond@gmail.com') return _.values(_posts)
+  return _.values(_.filter(_posts, post => post.published))
+}
+
+function cleanPosts (posts) {
+  return _.values(_.mapObject(posts, (val, key) => {
+    return Object.assign({}, {id: key}, {...val})
+  }))
 }
