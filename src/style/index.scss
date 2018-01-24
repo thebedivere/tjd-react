@@ -2,6 +2,11 @@
 @import "neat/neat";
 @import "base/base";
 @import url('https://fonts.googleapis.com/css?family=Roboto');
+
+@mixin shadow {
+    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+}
+
 .body,
 html {
     font-family: "Roboto", "Arial", sans-serif;
@@ -41,6 +46,7 @@ html {
         }
     }
     article {
+        @include shadow;
         text-align: left!important;
         max-width: 500px;
         background: white;
@@ -138,5 +144,56 @@ form {
     img {
         display: block;
         margin: 1em auto;
+    }
+}
+
+.right-menu {
+    @include shadow;
+    max-width: 25%;
+    position: fixed;
+    right: 0;
+    top: 0;
+    padding: 5em 2em;
+    background: white;
+    height: 100vh;
+}
+
+nav {
+    z-index: 1000;
+    @include shadow;
+    background: white;
+    top: 0;
+    left: 0;
+    right: 0;
+    position: fixed;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    direction: row;
+    height: 3em;
+    p, a {
+        margin: 0 1em;
+    }
+}
+
+.nav-margin {
+    margin-top: 5em;
+}
+
+.auth-button {
+    @include shadow;
+    position: fixed;
+    right: 1em;
+    bottom: 1em;
+}
+
+.checkbox {
+    margin: 1em 0;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    direction: row;
+    p, a, label, input {
+        margin: 0 0.5em 0 0;
     }
 }

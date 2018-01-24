@@ -1,8 +1,16 @@
 import React from 'react'
-import { compose, withHandlers, defaultProps } from 'recompose'
+import { compose, withHandlers } from 'recompose'
+import NewPost from './NewPost'
 
 const EditBlog = props =>
   <section>
+    <div className='right-menu'>
+      <NewPost />
+      <div className='checkbox'>
+        <label>Published</label>
+        <input type='checkbox' id='published' checked={props.published || false} onChange={props.handleChange} />
+      </div>
+    </div>
     <form>
       <div>
         <label htmlFor='title'>Title</label>
@@ -26,13 +34,11 @@ export default compose(
   withHandlers({
     handleChange: props => event => {
       const { author, body, title, date } = props
-      props.firestore.set(`blog/${props.postId}`,
-        Object.assign({}, defaultPost, {author, body, title, date}, { [event.target.id]: event.target.value }))
+      const value = event.target.type === 'checkbox' ? event.target.checked : event.target.value
+      const post = updatePost({ [event.target.id]: value }, {author, body, title, date})
+      console.log(post)
+      props.firestore.set(`blog/${props.postId}`, post)
     }
-  }),
-  defaultProps({
-    date: Date.now(),
-    fake: 'news'
   })
 )(EditBlog)
 
@@ -42,4 +48,23 @@ const defaultPost = {
   author: 'Josh Derocher',
   body: '',
   published: true
+}
+
+// Object.assign({}, defaultPost, )
+function updatePost (newPost, oldPost) {
+  const updatedPost = Object.assign({}, oldPost, newPost)
+  return {
+    author: updatedPost.author || defaultPost.author,
+    body: updatedPost.body || defaultPost.body,
+    date: updatedPost.date || defaultPost.date,
+    published: publishedBoolean(updatedPost.published),
+    title: updatedPost.title || defaultPost.title
+  }
+}
+
+function publishedBoolean (val) {
+  if (val === 'on' || val === true) {
+    return true
+  }
+  return false
 }
