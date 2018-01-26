@@ -1,5 +1,4 @@
 import React from 'react'
-import _ from 'underscore'
 import { withProps } from 'recompose'
 import { compose } from 'redux'
 import { connect } from 'react-redux'

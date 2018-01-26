@@ -1,5 +1,5 @@
 import React from 'react'
-import _ from 'underscore'
+import _ from 'lodash'
 
 const Links = props => {
   const links = _.values(props.links, val => val)

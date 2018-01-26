@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom'
 import App from './App'
 import createStore from './data/createStore'
 import './style/index.scss'
+import 'babel-polyfill'
 
 const store = createStore(window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__())
 

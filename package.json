@@ -4,13 +4,16 @@
   "version": "0.2.0",
   "author": "Josh Derocher <contact@thejoshderocher.com>",
   "scripts": {
+    "make": "webpack --progress --config ./config/webpack.build.js --profile --json > compilation-stats.json ",
+    "stats": "webpack --profile --json > compilation-stats.json --config ./config/webpack.dev.js",
     "start": "webpack-dev-server --progress --config ./config/webpack.dev.js",
-    "build": "webpack --progress --config ./config/webpack.prod.js",
+    "build": "webpack -p --progress --config ./config/webpack.prod.js",
     "test": "node scripts/test.js --env=jsdom",
     "coverage": "jest --coverage --env=jsdom"
   },
   "babel": {
     "plugins": [
+      "lodash",
       "transform-runtime",
       "transform-object-rest-spread",
       "syntax-dynamic-import"
@@ -23,6 +26,7 @@
       },
       "test": {
         "plugins": [
+          "lodash",
           "babel-polyfill",
           "transform-es2015-modules-commonjs",
           "dynamic-import-node"
@@ -39,7 +43,9 @@
         {
           "targets": {
             "browsers": [
-              "last 2 versions"
+              "last 2 versions",
+              "not safari < 8",
+              "not ie < 11"
             ]
           }
         }
@@ -55,12 +61,11 @@
     "parser": "babel-eslint"
   },
   "dependencies": {
+    "axios": "^0.17.1",
     "babel-code-frame": "^6.26.0",
-    "babel-core": "^6.26.0",
     "babel-eslint": "^8.2.1",
     "babel-generator": "^6.26.0",
     "babel-helpers": "^6.24.1",
-    "babel-loader": "^7.1.2",
     "babel-messages": "^6.23.0",
     "babel-minify-webpack-plugin": "^0.2.0",
     "babel-plugin-transform-object-rest-spread": "^6.26.0",
@@ -77,9 +82,12 @@
     "gatsby-plugin-react-helmet": "^2.0.3",
     "gatsby-plugin-sass": "^1.0.15",
     "html-webpack-plugin": "^2.30.1",
+    "immutable": "^3.8.2",
     "offline-plugin": "^4.9.0",
     "postcss-loader": "^2.0.10",
+    "ramda": "^0.25.0",
     "react": "^16.2.0",
+    "react-code-splitting": "^1.2.1",
     "react-dom": "^16.2.0",
     "react-helmet": "^5.2.0",
     "react-markdown": "^3.1.4",
@@ -93,11 +101,11 @@
     "style-loader": "^0.19.1",
     "transform-runtime": "0.0.0",
     "underscore": "^1.8.3",
+    "underscore-es": "^1.9.8",
     "web-app-manifest-loader": "^0.1.1",
-    "webpack": "^3.10.0",
-    "webpack-bundle-analyzer": "^2.9.2",
     "webpack-dev-server": "^2.11.1",
-    "webpack-merge": "^4.1.1"
+    "webpack-merge": "^4.1.1",
+    "webpack-split-by-path": "^2.0.0"
   },
   "keywords": [
     "gatsby"
@@ -106,8 +114,14 @@
   "main": "n/a",
   "devDependencies": {
     "babel-cli": "^6.26.0",
+    "babel-core": "^6.26.0",
+    "babel-loader": "^7.1.2",
+    "babel-plugin-lodash": "^3.3.2",
     "babel-plugin-syntax-dynamic-import": "^6.18.0",
     "babel-preset-env": "^1.6.1",
-    "babel-preset-react": "^6.24.1"
+    "babel-preset-react": "^6.24.1",
+    "lodash-webpack-plugin": "^0.11.4",
+    "webpack": "^3.10.0",
+    "webpack-bundle-analyzer": "^2.9.2"
   }
 }

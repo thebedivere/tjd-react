@@ -6,7 +6,7 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin')
 
 module.exports = merge(common, {
   output: {
-    filename: '[name]-bundle.js',
+    filename: '[name].js',
     path: path.resolve(__dirname, '..', 'tmp'),
     chunkFilename: '[name]-bundle.js',
     publicPath: '/'
@@ -20,7 +20,7 @@ module.exports = merge(common, {
     hotOnly: false, // set this to only do hot swapping. If a module can't be hot swapped you'll need to manually refresh the page.
     https: false, // enable https
     inline: true, // setting this to false will load the dev server in an iframe.
-    open: true, // Open a webpage to the dev server.
+    open: false, // Open a webpage to the dev server.
     overlay: true, // Show an error page in the browser when the code fails to compile.
     port: 3939, // the port for the dev server
     stats: { colors: true },
@@ -63,15 +63,6 @@ module.exports = merge(common, {
     // reloading page after webpack rebuilt modules.
     // It also updates stylesheets and inline assets without page reloading.
     new webpack.HotModuleReplacementPlugin(),
-
-    // Automatically move all modules defined outside of application directory to vendor bundle.
-    // If you are using more complicated project structure, consider to specify common chunks manually.
-    new webpack.optimize.CommonsChunkPlugin({
-      name: 'vendor',
-      minChunks (module /*, count */) {
-        return module.resource && module.resource.indexOf(path.resolve(__dirname, 'src')) === -1
-      }
-    }),
 
         // settings for extracting css from js
     new ExtractTextPlugin({

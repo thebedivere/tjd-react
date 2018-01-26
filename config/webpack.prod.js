@@ -5,14 +5,15 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const common = require('./webpack.common')
 const CleanWebpackPlugin = require('clean-webpack-plugin')
 const BabelWebpackPlugin = require('babel-minify-webpack-plugin')
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
 
 module.exports = merge(common, {
   output: {
-    filename: '[name]-bundle-[hash].js',
+    filename: '[name]-[hash].js',
     path: path.resolve(__dirname, '..', 'dist'),
     chunkFilename: '[name]-bundle-[hash].js'
   },
-  devtool: 'cheap-module-source-map',
+  devtool: false,
   module: {
     rules: [
       // image loader
@@ -72,13 +73,47 @@ module.exports = merge(common, {
     maxEntrypointSize: 100000, // in bytes
     maxAssetSize: 450000 // in bytes
   },
+  resolve: {
+    alias: {
+      // Avoid Lodash variant duplication
+      // https://www.contentful.com/blog/2017/10/27/put-your-webpack-bundle-on-a-diet-part-3/
+      'lodash-es': 'lodash',
+      'lodash.some': 'lodash/some',
+      'lodash.isplainobject': 'lodash/isplainobject',
+      'lodash.memoize': 'lodash/memoize',
+      'lodash.uniq': 'lodash/uniq',
+      'lodash.get': 'lodash/get',
+      'lodash.camelcase': 'lodash/camelcase',
+      'lodash.assign': 'lodash/assign',
+      'lodash.clonedeep': 'lodash/clonedeep',
+      'lodash.meregewith': 'lodash/mergewith',
+      'lodash.pad': 'lodash/pad',
+      'lodash.padend': 'lodash/padend',
+      'lodash.padstart': 'lodash/padstart',
+      'lodash.cond': 'lodash/cond'
+    }
+  },
   plugins: [
-    // set node enviroment to production
-    new webpack.DefinePlugin({
-      'process.env': {
-        'NODE_ENV': JSON.stringify('production')
+    new BundleAnalyzerPlugin({
+      analyzerPort: 8444
+    }),
+    new webpack.LoaderOptionsPlugin({
+      minimize: true,
+      debug: false
+    }),
+
+    new webpack.optimize.UglifyJsPlugin({
+      compress: {
+        screw_ie8: true,
+        warnings: false
       }
     }),
+    // set node enviroment to production
+    new webpack.EnvironmentPlugin({
+      NODE_ENV: 'development',
+      DEBUG: false
+    }),
+    new webpack.optimize.ModuleConcatenationPlugin(),
     // clean build path
     new CleanWebpackPlugin([ 'dist' ], {
       root: path.resolve(__dirname, '../')
@@ -95,15 +130,6 @@ module.exports = merge(common, {
     new ExtractTextPlugin({
       filename: '[name].css',
       allChunks: true
-    }),
-
-    // Automatically move all modules defined outside of application directory to vendor bundle.
-    // If you are using more complicated project structure, consider to specify common chunks manually.
-    new webpack.optimize.CommonsChunkPlugin({
-      name: 'vendor',
-      minChunks (module /*, count */) {
-        return module.resource && module.resource.indexOf(path.resolve(__dirname, 'src')) === -1
-      }
     })
   ]
 })
