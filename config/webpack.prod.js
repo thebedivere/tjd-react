@@ -11,7 +11,8 @@ module.exports = merge(common, {
   output: {
     filename: '[name]-[hash].js',
     path: path.resolve(__dirname, '..', 'dist'),
-    chunkFilename: '[name]-bundle-[hash].js'
+    chunkFilename: '[name]-bundle-[hash].js',
+    publicPath: '/'
   },
   devtool: false,
   module: {
@@ -73,6 +74,9 @@ module.exports = merge(common, {
     maxEntrypointSize: 100000, // in bytes
     maxAssetSize: 450000 // in bytes
   },
+  // TODO: Deployment is failing :(
+    // the post page is throwing an error
+    // local build works fine, it's only the build output that fails
   resolve: {
     alias: {
       // Avoid Lodash variant duplication
