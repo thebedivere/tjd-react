@@ -8,3 +8,5 @@ public/
 yarn-error.log
 coverage/
 dist/
+make
+tmp

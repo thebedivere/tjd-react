@@ -7,8 +7,10 @@ const Links = props => {
     <ul className='links'>
       {links.map(link => (
         <li key={link.title}>
-          <a href={link.url}><i className={link.icon} /></a>
-          <p>{link.title}</p>
+          <a href={link.url}>
+            <i className={link.icon} />
+            <p>{link.title}</p>
+          </a>
         </li>))
       }
     </ul>

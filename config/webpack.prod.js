@@ -6,6 +6,7 @@ const common = require('./webpack.common')
 const CleanWebpackPlugin = require('clean-webpack-plugin')
 const BabelWebpackPlugin = require('babel-minify-webpack-plugin')
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
+const WebpackPwaManifest = require('webpack-pwa-manifest')
 
 module.exports = merge(common, {
   output: {
@@ -74,9 +75,6 @@ module.exports = merge(common, {
     maxEntrypointSize: 100000, // in bytes
     maxAssetSize: 450000 // in bytes
   },
-  // TODO: Deployment is failing :(
-    // the post page is throwing an error
-    // local build works fine, it's only the build output that fails
   resolve: {
     alias: {
       // Avoid Lodash variant duplication
@@ -98,6 +96,19 @@ module.exports = merge(common, {
     }
   },
   plugins: [
+    new WebpackPwaManifest({
+      name: 'The Josh Derocher',
+      short_name: 'Josh D',
+      description: 'The personal website for Josh Derocher',
+      background_color: '#104E93',
+      theme_color: '#104E93',
+      icons: [
+        {
+          src: path.resolve('src/assets/josh.jpg'),
+          sizes: [96, 128, 192, 256, 384, 512] // multiple sizes
+        }
+      ]
+    }),
     new BundleAnalyzerPlugin({
       analyzerPort: 8444
     }),

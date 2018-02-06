@@ -1,6 +1,5 @@
 const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
-const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
 const webpack = require('webpack')
 const OfflinePlugin = require('offline-plugin')
 const LodashModuleReplacementPlugin = require('lodash-webpack-plugin')
@@ -60,6 +59,29 @@ module.exports = {
     ]
   },
   plugins: [
+    new OfflinePlugin({
+      safeToUseOptionalCaches: true,
+
+      caches: {
+        main: [
+          '*.js',
+          '*.css',
+          '[name]-[hash].js',
+          'index.html'
+        ],
+        additional: [
+          '*.woff',
+          '*.woff2'
+        ]
+      },
+
+      ServiceWorker: {
+        events: true
+      },
+      AppCache: {
+        events: true
+      }
+    }),
     new LodashModuleReplacementPlugin({
       currying: true,
       shorthands: false,

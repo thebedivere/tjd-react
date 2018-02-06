@@ -14,6 +14,8 @@ const rrfConfig = {
 firebase.initializeApp(firebaseConfig)
 firebase.firestore()
 
+firebase.firestore().enablePersistence().catch(err => console.log(err))
+
 const createStoreWithFirebase = compose(
     reactReduxFirebase(firebase, rrfConfig),
     reduxFirestore(firebase)
