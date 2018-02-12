@@ -35,7 +35,8 @@ function filterPosts (posts, auth) {
 }
 
 function cleanPosts (posts) {
-  return _.values(_.mapValues(posts, (val, key) => {
+  return _.sortBy(_.values(_.mapValues(posts, (val, key) => {
+    console.log(val.date)
     return Object.assign({}, {id: key}, {...val})
-  }))
+  })), p => p.date).reverse()
 }
