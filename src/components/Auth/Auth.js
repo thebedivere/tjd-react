@@ -1,19 +1,26 @@
-import React from 'react'
-import { compose } from 'redux'
-import { connect } from 'react-redux'
-import { firebaseConnect, isLoaded, isEmpty } from 'react-redux-firebase'
+import React, { useCallback } from 'react'
+import { useAuthState } from 'react-firebase-hooks/auth'
+import firebase from 'firebase/app'
 
-const Auth = ({ firebase, auth, children }) =>
-  <main>
-    <div>
-      {(isLoaded(auth) && isEmpty(auth)) && <button className='auth-button' onClick={() => firebase.login({ provider: 'google', type: 'popup' })}>
+const provider = new firebase.auth.GoogleAuthProvider()
+
+const Auth = ({ auth, children }) => {
+  const [user] = useAuthState(firebase.auth())
+
+  const onClick = useCallback(() =>
+    firebase.auth().signInWithPopup(provider), [])
+
+  return (
+    <main>
+      <div>
+        {user && !user.email &&
+          <button className='auth-button' onClick={onClick}>
       Login with Google
-    </button>}
-      {(isLoaded(auth) && !isEmpty(auth) && auth.email === 'joshua.aarond@gmail.com') && children}
-    </div>
-  </main>
+          </button>}
+        {user && user.email === 'joshua.aarond@gmail.com' && children}
+      </div>
+    </main>
+  )
+}
 
-export default compose(
-  firebaseConnect(),
-  connect(({firebase: { auth }}) => ({auth}))
-)(Auth)
+export default Auth
