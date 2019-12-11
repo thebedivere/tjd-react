@@ -11,8 +11,7 @@ const Links = props => {
             <i className={link.icon} />
             <p>{link.title}</p>
           </a>
-        </li>))
-      }
+        </li>))}
     </ul>
   )
 }

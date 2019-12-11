@@ -1,15 +1,20 @@
-import React from 'react'
-import { withFirestore } from 'react-redux-firebase'
+import React, { useCallback } from 'react'
 import { withRouter } from 'react-router-dom'
+import firebase from 'firebase/app'
+const blogCollection = firebase.firestore().collection('blog')
 
-const NewPost = withRouter(({ firestore: { add }, history }) =>
-  <div className='new-post'>
-    <button onClick={() => add('blog', {
-      date: Date.now()
-    }).then(docRef => history.push(`/post/${docRef.id}`))}>
+const NewPost = withRouter(({ history }) => {
+  const onClick = useCallback(() => blogCollection.add({
+    date: Date.now().valueOf()
+  }).then(docRef => history.push(`/post/${docRef.id}`)), [history])
+
+  return (
+    <div className='new-post'>
+      <button onClick={onClick}>
         Create new post
-    </button>
-  </div>
-)
+      </button>
+    </div>
+  )
+})
 
-export default withFirestore(NewPost)
+export default NewPost
