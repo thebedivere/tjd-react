@@ -1,6 +1,5 @@
 .cache/
 .DS_Store
-/vscode
 build.zip
 coverage/
 dist/
@@ -8,3 +7,5 @@ make
 node_modules
 tmp
 yarn-error.log
+build/
+.firebase
