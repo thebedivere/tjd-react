@@ -2,11 +2,13 @@ import React, { useMemo } from 'react'
 import BlogBody from './BlogBody'
 import format from 'date-fns/format'
 import { Link } from 'react-router-dom'
+import { isValid } from 'date-fns'
+
+const formatDate = timestamp => isValid(timestamp) ? format(timestamp, 'MM-dd-yyyy') : null
 
 const BlogPost = ({ title, id, date, author, body }) => {
-  const formattedDate = useMemo(() =>
-    format(date, 'MM-dd-yyy')
-  , [date])
+  const formattedDate = useMemo(() => formatDate(date)
+    , [date])
   return (
     <article>
       <header>
