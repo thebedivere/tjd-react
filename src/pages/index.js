@@ -6,6 +6,7 @@ import { useCollection, useDocumentData } from 'react-firebase-hooks/firestore'
 import Blog from '../components/blog/Blog'
 import Header from '../components/Header/'
 import Links from '../components/Links/'
+import { Admin } from '../components/Admin'
 
 function filterPosts (posts, auth) {
   const _posts = cleanPosts(posts)
@@ -43,6 +44,7 @@ const IndexPage = ({ firestore }) => {
 
   return (
     <>
+      <Admin user={user} />
       {site && <Header title={site.title} tagline={site.tagline} />}
       {links && <Links links={links} />}
       {blog &&

@@ -1,206 +1,226 @@
 @import "bourbon/bourbon";
 @import "neat/neat";
 @import "base/base";
-@import url('https://fonts.googleapis.com/css?family=Roboto');
+@import url("https://fonts.googleapis.com/css?family=Roboto");
 
 @mixin shadow {
-    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
 }
 
 .body,
 html {
-    font-family: "Roboto", "Arial", sans-serif;
-    background-color: #eee;
-    h1,
-    h2,
+  font-family: "Roboto", "Arial", sans-serif;
+  background-color: #eee;
+  h1,
+  h2,
+  p {
+    color: #333;
+  }
+  .page-header {
+    color: blue;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    text-align: center;
+    padding: 1.5em;
+    h1 {
+      font-size: 4em;
+      margin-bottom: 0.2em;
+      flex-basis: 100%;
+    }
     p {
-        color: #333;
+      font-size: 1.1em;
+      margin: 0 0.5em;
     }
-    .page-header {
-        color: blue;
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
-        text-align: center;
-        padding: 1.5em;
-        h1 {
-            font-size: 4em;
-            margin-bottom: 0.2em;
-            flex-basis: 100%;
-        }
-        p {
-            font-size: 1.1em;
-            margin: 0 0.5em;
-        }
-    }
+  }
 }
 
-.links { 
-        max-width: 512px;
-        margin: .5em auto 1em;
-        display: flex;
-        align-content: center;
-        justify-content: space-around;
-        li {
-            text-align: center;
-        }
+.links {
+  max-width: 512px;
+  margin: 0.5em auto 1em;
+  display: flex;
+  align-content: center;
+  justify-content: space-around;
+  li {
+    text-align: center;
+  }
+}
+article {
+  @include shadow;
+  text-align: left !important;
+  max-width: 800px;
+  background: white;
+  padding: 2em;
+  margin: 1em auto;
+  header {
+    h2 {
+      font-size: 2em;
+      margin-bottom: 0.2em;
+      flex-basis: 100%;
     }
-    article {
-        @include shadow;
-        text-align: left!important;
-        max-width: 800px;
-        background: white;
-        padding: 2em;
-        margin: 1em auto;
-        header {
-            h2 {
-                font-size: 2em;
-                margin-bottom: .2em;
-                flex-basis: 100%;
-
-            }
-            p {
-                color: #888;
-                font-size: 0.9em;
-            }
-            p + p {
-                margin-left: .5em;
-            }
-            padding: 0;
-            color: #888;
-            display: flex;
-            flex-wrap: wrap;
-        }
+    p {
+      color: #888;
+      font-size: 0.9em;
     }
-    section {
-        padding: 2em;
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
-        align-items: flex-start;
+    p + p {
+      margin-left: 0.5em;
     }
+    padding: 0;
+    color: #888;
+    display: flex;
+    flex-wrap: wrap;
+  }
+}
+section {
+  padding: 2em;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: flex-start;
+}
 
 .game {
-    font-size: 2em;
+  font-size: 2em;
+  display: inline;
+  span,
+  input {
     display: inline;
-    span, input {
-        display: inline;
-        width: auto;
-        align-self: center;
-    }
-    input {
-        width: 5em;
-        margin-right: 1em;
-    }
+    align-self: center;
+  }
+  input {
+    width: 5em;
+    margin-right: 1em;
+  }
 }
 
 .col {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 footer {
-    font-size: 0.8em;
-    ul {
-        padding-top: 2em;
-        display: flex;
-        justify-content: flex-start;
-        li {
-            margin-right: 0.5em;
-        }
+  font-size: 0.8em;
+  ul {
+    padding-top: 2em;
+    display: flex;
+    justify-content: flex-start;
+    li {
+      margin-right: 0.5em;
     }
+  }
 }
 
 pre {
-    padding: 1em;
-    background: black;
-    overflow-x: scroll;
-    color: white;
+  padding: 1em;
+  background: black;
+  overflow-x: scroll;
+  color: white;
 }
 
 form {
-    width: 100%;
-    max-width: 500px;
-    textarea {
-        height: 250px;
-    }
+  width: 100%;
+  max-width: 1000px;
+  textarea {
+    min-height: 400px;
+  }
+}
+.mde-tabs {
+  button {
+    background-color: "blue !important";
+  }
 }
 
 .work {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    background: black;
-    color: white;
-    font-family: monospace;
-    max-width: 250px;
-    padding: 1em;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  background: black;
+  color: white;
+  font-family: monospace;
+  max-width: 250px;
+  padding: 1em;
 }
 
 .not-found {
-    display: flex;
-    flex-direction: column;
-    h1, h2, p, a {
-        text-align: center;
-    }
-    h1 {
-        font-size: 3em;
-    }
-    img {
-        display: block;
-        margin: 1em auto;
-    }
+  display: flex;
+  flex-direction: column;
+  h1,
+  h2,
+  p,
+  a {
+    text-align: center;
+  }
+  h1 {
+    font-size: 3em;
+  }
+  img {
+    display: block;
+    margin: 1em auto;
+  }
 }
 
 .right-menu {
-    @include shadow;
-    max-width: 25%;
-    position: fixed;
-    right: 0;
-    top: 0;
-    padding: 5em 2em;
-    background: white;
-    height: 100vh;
+  @include shadow;
+  max-width: 25%;
+  position: fixed;
+  right: 0;
+  top: 0;
+  padding: 5em 2em;
+  background: white;
+  height: 100vh;
 }
 
 nav {
-    z-index: 1000;
-    @include shadow;
-    background: white;
-    top: 0;
-    left: 0;
-    right: 0;
-    position: fixed;
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    direction: row;
-    height: 3em;
-    p, a {
-        margin: 0 1em;
-    }
+  z-index: 1000;
+  @include shadow;
+  background: white;
+  top: 0;
+  left: 0;
+  right: 0;
+  position: fixed;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  direction: row;
+  height: 3em;
+  p,
+  a {
+    margin: 0 1em;
+  }
 }
 
 .nav-margin {
-    margin-top: 5em;
+  margin-top: 5em;
 }
 
 .auth-button {
-    @include shadow;
-    position: fixed;
-    right: 1em;
-    bottom: 1em;
+  @include shadow;
+  position: fixed;
+  right: 1em;
+  bottom: 1em;
 }
 
 .checkbox {
-    margin: 1em 0;
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    direction: row;
-    p, a, label, input {
-        margin: 0 0.5em 0 0;
-    }
+  margin: 1em 0;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  direction: row;
+  p,
+  a,
+  label,
+  input {
+    margin: 0 0.5em 0 0;
+  }
+}
+
+.admin-alert {
+  @include shadow();
+  background: blue;
+  color: white;
+  display: fixed;
+  position: fixed;
+  padding: 10px;
 }
