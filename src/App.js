@@ -7,7 +7,6 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import firebaseConfig from './data/config'
 
 firebase.initializeApp(firebaseConfig)
-firebase.firestore().settings({ timestampsInSnapshots: true })
 
 const App = () => {
   const AsyncIndexPage = props => (
