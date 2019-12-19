@@ -5,7 +5,7 @@ const Blog = ({ blogPosts }) =>
   <div>
     {blogPosts &&
         blogPosts.map(post => (
-          <BlogPost {...post} key={post.title} />
+          <BlogPost {...post} key={`${post.title}${post.date}`} />
         ))}
   </div>
 
