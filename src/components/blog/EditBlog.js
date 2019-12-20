@@ -3,6 +3,7 @@ import firebase from 'firebase/app'
 import React, { useCallback, useEffect, useState } from 'react'
 import { useDocumentData } from 'react-firebase-hooks/firestore'
 import ReactMde from 'react-mde'
+import BlogBody from './BlogBody'
 import 'react-mde/lib/styles/css/react-mde-all.css'
 
 const defaultPost = {
@@ -79,6 +80,9 @@ const EditBlog = ({ postId, getDocument = _getDocument, setDocument = _setDocume
     pushUpdate({ author: newAuthor })
   }, [pushUpdate])
 
+  // react-mde
+  const [selectedTab, setSelectedTab] = useState('write')
+
   return (
     <section>
       <form>
@@ -118,7 +122,14 @@ const EditBlog = ({ postId, getDocument = _getDocument, setDocument = _setDocume
         </div>
         <div>
           <label htmlFor='body'>Body</label>
-          <ReactMde value={localBody} id='body' onChange={handleBodyChange} />
+          <ReactMde
+            id='body'
+            onChange={handleBodyChange}
+            value={localBody}
+            selectedTab={selectedTab}
+            onTabChange={setSelectedTab}
+            generateMarkdownPreview={markdown => Promise.resolve(<BlogBody body={markdown} />)}
+          />
         </div>
       </form>
     </section>

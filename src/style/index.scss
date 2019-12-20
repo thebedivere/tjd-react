@@ -74,12 +74,22 @@ article {
     flex-wrap: wrap;
   }
 }
+
 section {
   padding: 2em;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   align-items: flex-start;
+}
+
+.mde-preview-content {
+  background: white;
+}
+
+code {
+  background: #eee;
+  padding: 2px;
 }
 
 .game {
@@ -117,9 +127,21 @@ footer {
 
 pre {
   padding: 1em;
-  background: black;
+  background: black !important;
   overflow-x: scroll;
   color: white;
+  code {
+  background:black;
+  padding: 2px;
+}
+}
+
+.mde-tabs {
+  button {
+    color: white;
+    background: blue!important;
+  }
+
 }
 
 form {
