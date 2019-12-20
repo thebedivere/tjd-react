@@ -1,10 +1,9 @@
-import React, { useCallback, useState, useEffect } from 'react'
-import NewPost from './NewPost'
+import { format, isValid } from 'date-fns'
 import firebase from 'firebase/app'
+import React, { useCallback, useEffect, useState } from 'react'
 import { useDocumentData } from 'react-firebase-hooks/firestore'
 import ReactMde from 'react-mde'
 import 'react-mde/lib/styles/css/react-mde-all.css'
-import { format, isValid } from 'date-fns'
 
 const defaultPost = {
   title: '',
@@ -93,7 +92,7 @@ const EditBlog = ({ postId, getDocument = _getDocument, setDocument = _setDocume
           />
         </div>
         <div>
-          <label htmlFor='title'>Date</label>
+          <label htmlFor='date'>Date</label>
           <input
             type='date'
             id='date'
@@ -110,22 +109,18 @@ const EditBlog = ({ postId, getDocument = _getDocument, setDocument = _setDocume
             onChange={handleAuthorChange}
           />
         </div>
-        <div>
-          <label htmlFor='body'>Body</label>
-          <ReactMde value={localBody} id='body' onChange={handleBodyChange} />
-        </div>
-      </form>
-      <div className='post-actions'>
-        <NewPost />
         <div className='checkbox'>
-          <label>Published</label>
+          <label htmlFor='published'>Published</label>
           <input
             type='checkbox' id='published' checked={localPublished}
             onChange={handlePublishedChange}
           />
         </div>
-      </div>
-
+        <div>
+          <label htmlFor='body'>Body</label>
+          <ReactMde value={localBody} id='body' onChange={handleBodyChange} />
+        </div>
+      </form>
     </section>
   )
 }

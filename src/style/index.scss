@@ -216,13 +216,19 @@ nav {
   }
 }
 
-.admin-alert {
+.admin-bar {
   @include shadow();
-  background: blue;
-  color: white;
+  color: black;
+  background: white;
   display: fixed;
   position: fixed;
   padding: 10px;
+  top: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .post-actions {
@@ -235,3 +241,4 @@ nav {
   align-items: center;
   justify-content: space-between;
 }
+
