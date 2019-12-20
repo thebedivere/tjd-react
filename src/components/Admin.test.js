@@ -26,6 +26,6 @@ describe('Admin', () => {
         email: 'joshua.aarond@gmail.com'
       }
     })
-    expect(admin.text()).toBe('Welcome joshua.aarond@gmail.com')
+    expect(admin.find('#welcome').text()).toEqual('Welcome joshua.aarond@gmail.com')
   })
 })
