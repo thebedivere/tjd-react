@@ -224,3 +224,14 @@ nav {
   position: fixed;
   padding: 10px;
 }
+
+.post-actions {
+  width: 500px;
+  background: white;
+  padding: 1em;
+  margin:1em;
+  @include shadow;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
