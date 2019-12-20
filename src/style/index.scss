@@ -58,6 +58,9 @@ article {
       margin-bottom: 0.2em;
       flex-basis: 100%;
     }
+    i {
+      margin-left: 0.5em;
+    }
     p {
       color: #888;
       font-size: 0.9em;
@@ -71,12 +74,22 @@ article {
     flex-wrap: wrap;
   }
 }
+
 section {
   padding: 2em;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   align-items: flex-start;
+}
+
+.mde-preview-content {
+  background: white;
+}
+
+code {
+  background: #eee;
+  padding: 2px;
 }
 
 .game {
@@ -114,9 +127,21 @@ footer {
 
 pre {
   padding: 1em;
-  background: black;
+  background: black !important;
   overflow-x: scroll;
   color: white;
+  code {
+  background:black;
+  padding: 2px;
+}
+}
+
+.mde-tabs {
+  button {
+    color: white;
+    background: blue!important;
+  }
+
 }
 
 form {
@@ -216,11 +241,29 @@ nav {
   }
 }
 
-.admin-alert {
+.admin-bar {
   @include shadow();
-  background: blue;
-  color: white;
+  color: black;
+  background: white;
   display: fixed;
   position: fixed;
   padding: 10px;
+  top: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
+
+.post-actions {
+  width: 500px;
+  background: white;
+  padding: 1em;
+  margin:1em;
+  @include shadow;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+

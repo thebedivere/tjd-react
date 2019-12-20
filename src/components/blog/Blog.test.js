@@ -1,10 +1,15 @@
-/* global it */
+/* eslint-env jest */
 
-import blog from './Blog'
+import Blog from './Blog'
 import React from 'react'
-import ReactDOM from 'react-dom'
+import { shallow } from 'enzyme'
 
-it('renders without crashing', () => {
-  const div = document.createElement('div')
-  ReactDOM.render(<blog />, div)
+describe('Blog', () => {
+  let blog
+  beforeEach(() => {
+    blog = shallow(<Blog />)
+  })
+  it('renders without crashing', () => {
+    expect(blog).toBeDefined()
+  })
 })
