@@ -1,54 +1,50 @@
-import firebase from 'firebase/app'
-import _ from 'lodash'
-import React from 'react'
-import { useAuthState } from 'react-firebase-hooks/auth'
-import { useCollection, useDocumentData } from 'react-firebase-hooks/firestore'
+import React, { useEffect, useState } from 'react'
+
 import Blog from '../components/blog/Blog'
+import ErrorMessage from '../components/Error'
 import Header from '../components/Header/'
 import Links from '../components/Links/'
-import { Admin } from '../components/Admin'
-
-function filterPosts (posts, auth) {
-  const _posts = cleanPosts(posts)
-  if (auth && auth.email === 'joshua.aarond@gmail.com') return _.values(_posts)
-  return _.values(_.filter(_posts, post => post.published))
-}
-
-function cleanPosts (posts) {
-  return _.sortBy(
-    _.values(
-      _.mapValues(posts, (val, key) => {
-        const data = val.data()
-        const id = val.id
-        return Object.assign({}, { id }, { ...data })
-      })
-    ),
-    p => p.date
-  ).reverse()
-}
+import app from '../data/flamelink'
 
 const IndexPage = ({ firestore }) => {
-  const [user] = useAuthState(firebase.auth())
+  const [site, setSite] = useState()
+  const [links, setLinks] = useState()
+  const [blog, setBlog] = useState()
+  const [error, setError] = useState()
 
-  const [blog] = useCollection(
-    firebase.firestore().collection('blog')
-  )
+  useEffect(() => {
+    app.content.get({ 
+      schemaKey: 'site',
+       fields: ['title', 'tagline']
+       })
+      .then(setSite)
+      .catch(setError)
+  }, [])
 
-  const [site] = useDocumentData(
-    firebase.firestore().doc('info/site')
-  )
+    useEffect(() => {
+      app.content.get({ 
+        schemaKey: 'links',
+        fields: ['title', 'icon', 'url']
+        })
+        .then(setLinks)
+        .catch(setError)
+    }, [])
 
-  const [links] = useDocumentData(
-    firebase.firestore().doc('info/links')
-  )
+    useEffect(() => {
+      app.content.get({ 
+        schemaKey: 'blogPost',
+        fields: ['title', 'date', 'body', 'published', 'id']
+        })
+        .then(setBlog)
+        .catch(setError)
+    }, [])
 
   return (
     <>
-      <Admin user={user} />
-      {site && <Header title={site.title} tagline={site.tagline} />}
-      {links && <Links links={links} />}
-      {blog &&
-        <Blog blogPosts={filterPosts(blog.docs, user)} />}
+    {error && <ErrorMessage error={error}/>}
+    {site && <Header title={site.title} tagline={site.tagline} />}
+    {links && <Links links={links} />}
+    {blog && <Blog blogPosts={blog} />}
     </>
   )
 }

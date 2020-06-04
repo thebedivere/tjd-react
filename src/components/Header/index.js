@@ -1,9 +1,14 @@
-import React from 'react'
+import React, { useMemo } from 'react'
 
-const Header = ({title, tagline}) =>
-  <header className='page-header'>
+const splitByComma = str => str.split(',')
+
+const Header = ({title, tagline}) => {
+  const taglineArray = useMemo(() => splitByComma(tagline), [tagline])
+
+  return <header className='page-header'>
     <h1>{title}</h1>
-    {tagline && tagline.map((i) => <p key={i}>{i}</p>)}
+    {tagline && taglineArray.map((x) => <p key={x}>{x}</p>)}
   </header>
+}
 
 export default Header

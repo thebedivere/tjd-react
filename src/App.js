@@ -1,12 +1,8 @@
-import firebase from 'firebase'
-import 'firebase/auth'
-import 'firebase/firestore'
+import './data/flamelink'
+
 import React from 'react'
 import Async from 'react-code-splitting'
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
-import firebaseConfig from './data/config'
-
-firebase.initializeApp(firebaseConfig)
+import { Route, BrowserRouter as Router, Switch } from 'react-router-dom'
 
 const App = () => {
   const AsyncIndexPage = props => (
