@@ -4,7 +4,7 @@ import React, { useMemo } from 'react'
 import BlogPost from './BlogPost'
 
 const isPublished = x => x.published
-const sortByDate = x => _.sortBy(x, y => y.date)
+const sortByDate = x => _.sortBy(x, y => y.date).reverse()
 
 
 const Blog = ({ blogPosts }) => {
