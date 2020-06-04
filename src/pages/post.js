@@ -1,27 +1,44 @@
-import React from 'react'
-import EditBlog from '../components/blog/EditBlog'
-import Auth from '../components/Auth/Auth'
-import BlogPost from '../components/blog/BlogPost'
-import Navbar from '../components/Navbar'
-import { useDocumentData } from 'react-firebase-hooks/firestore'
 import firebase from 'firebase/app'
+import React, { useEffect, useState } from 'react'
+import { useDocumentData } from 'react-firebase-hooks/firestore'
+
+import BlogPost from '../components/blog/BlogPost'
+import ErrorMessage from '../components/Error'
+import Navbar from '../components/Navbar'
+import app from '../data/flamelink'
 
 const PostPage = ({ firestore, info, match }) => {
   const postId = match.params.id
-  const [site] = useDocumentData(
-    firebase.firestore().doc('info/site')
-  )
-  const [blog] = useDocumentData(
-    firebase.firestore().doc(`blog/${postId}`)
-  )
+  
+  const [site, setSite] = useState()
+  const [error, setError] = useState()
+  const [post, setPost] = useState()
+
+  useEffect(() => {
+    app.content.get({ 
+      schemaKey: 'site',
+       fields: ['title', 'tagline']
+       })
+      .then(setSite)
+      .catch(setError)
+  }, [])
+
+      useEffect(() => {
+      app.content.get({ 
+        schemaKey: 'blogPost',
+        entryId: postId,
+        fields: ['title', 'date', 'body', 'published', 'id']
+        })
+        .then(setPost)
+        .catch(setError)
+    }, [postId])
+
 
   return (
     <div className='nav-margin'>
+      {error && <ErrorMessage error={error}/>}
       {site && <Navbar title={site.title} />}
-      <BlogPost id={postId} {...blog} />
-      <Auth>
-        <EditBlog {...blog} postId={postId} firestore={firestore} />
-      </Auth>
+      <BlogPost id={postId} {...post} />
     </div>
   )
 }
