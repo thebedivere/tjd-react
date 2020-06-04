@@ -1,9 +1,11 @@
-import firebase from 'firebase'
 import 'firebase/auth'
 import 'firebase/firestore'
+
+import firebase from 'firebase'
 import React from 'react'
 import Async from 'react-code-splitting'
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
+import { Route, BrowserRouter as Router, Switch } from 'react-router-dom'
+
 import firebaseConfig from './data/config'
 
 firebase.initializeApp(firebaseConfig)
