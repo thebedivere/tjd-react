@@ -87,11 +87,6 @@ section {
   background: white;
 }
 
-code {
-  background: #eee;
-  padding: 2px;
-}
-
 .game {
   font-size: 2em;
   display: inline;
@@ -123,17 +118,6 @@ footer {
       margin-right: 0.5em;
     }
   }
-}
-
-pre {
-  padding: 1em;
-  background: black !important;
-  overflow-x: scroll;
-  color: white;
-  code {
-  background:black;
-  padding: 2px;
-}
 }
 
 .mde-tabs {
