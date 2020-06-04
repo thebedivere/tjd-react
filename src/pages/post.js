@@ -1,6 +1,4 @@
-import firebase from 'firebase/app'
 import React, { useEffect, useState } from 'react'
-import { useDocumentData } from 'react-firebase-hooks/firestore'
 
 import BlogPost from '../components/blog/BlogPost'
 import ErrorMessage from '../components/Error'
