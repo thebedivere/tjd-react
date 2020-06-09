@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types'
 import React, { useEffect, useState } from 'react'
 
 import Blog from '../components/blog/Blog'
@@ -6,7 +7,7 @@ import Header from '../components/Header/'
 import Links from '../components/Links/'
 import app from '../data/flamelink'
 
-const IndexPage = ({ firestore }) => {
+const IndexPage = () => {
   const [ site, setSite ] = useState()
   const [ links, setLinks ] = useState()
   const [ blog, setBlog ] = useState()

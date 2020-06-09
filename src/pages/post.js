@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types'
 import React, { useEffect, useState } from 'react'
 
 import BlogPost from '../components/blog/BlogPost'
@@ -5,7 +6,7 @@ import ErrorMessage from '../components/Error'
 import Navbar from '../components/Navbar'
 import app from '../data/flamelink'
 
-const PostPage = ({ firestore, info, match }) => {
+const PostPage = ({ match }) => {
   const postId = match.params.id
 
   const [ site, setSite ] = useState()
@@ -38,6 +39,14 @@ const PostPage = ({ firestore, info, match }) => {
       <BlogPost id={postId} {...post} />
     </div>
   )
+}
+
+PostPage.propTypes = {
+  match: PropTypes.shape({
+    params: PropTypes.shape({
+      id: PropTypes.string
+    })
+  })
 }
 
 export default PostPage

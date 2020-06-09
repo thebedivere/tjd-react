@@ -1,7 +1,9 @@
+import PropTypes from 'prop-types'
 import React from 'react'
+
 import NewPost from './blog/NewPost'
 
-export const Admin = ({ user }) => {
+const Admin = ({ user }) => {
   const isAdmin = user && user.email === 'joshua.aarond@gmail.com'
   return isAdmin ? (
     <div className='admin-bar'>
@@ -10,3 +12,12 @@ export const Admin = ({ user }) => {
     </div>
   ) : null
 }
+
+Admin.propTypes = {
+  user: PropTypes.shape({
+    email: PropTypes.string,
+    displayName: PropTypes.string
+  })
+}
+
+export default Admin

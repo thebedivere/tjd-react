@@ -1,5 +1,6 @@
 import { isValid } from 'date-fns'
 import format from 'date-fns/format'
+import PropTypes from 'prop-types'
 import React, { useMemo } from 'react'
 import { Link } from 'react-router-dom'
 
@@ -28,6 +29,15 @@ const BlogPost = ({ title, id, date, author, body, published }) => {
           <BlogBody body={body} />
         </main>}
     </article>)
+}
+
+BlogPost.propTypes = {
+  title: PropTypes.string,
+  id: PropTypes.string,
+  date: PropTypes.string,
+  author: PropTypes.string,
+  body: PropTypes.string,
+  published: PropTypes.bool
 }
 
 export default BlogPost

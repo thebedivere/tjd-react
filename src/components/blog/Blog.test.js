@@ -1,8 +1,9 @@
 /* eslint-env jest */
 
-import Blog from './Blog'
-import React from 'react'
 import { shallow } from 'enzyme'
+import React from 'react'
+
+import Blog from './Blog'
 
 describe('Blog', () => {
   let blog

@@ -1,4 +1,5 @@
 import _ from 'lodash'
+import PropTypes from 'prop-types'
 import React, { useMemo } from 'react'
 
 import BlogPost from './BlogPost'
@@ -18,6 +19,10 @@ const Blog = ({ blogPosts }) => {
           <BlogPost {...post} key={`${post.title}${post.date}`} />
         ))}
   </div>
+}
+
+Blog.propTypes = {
+  blogPosts: PropTypes.object
 }
 
 export default Blog

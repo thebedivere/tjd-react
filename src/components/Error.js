@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types'
 import React from 'react'
 
 const errorNames = {
@@ -14,5 +15,12 @@ const ErrorMessage = ({ error }) =>
     <br/>
     {errorCodes[error.code]}
   </div>
+
+ErrorMessage.propTypes = {
+  error: PropTypes.shape({
+    name: 'string',
+    code: 'string'
+  })
+}
 
 export default ErrorMessage
