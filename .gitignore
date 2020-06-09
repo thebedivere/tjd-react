@@ -9,3 +9,4 @@ tmp
 yarn-error.log
 build/
 .firebase
+.vscode
