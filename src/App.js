@@ -19,13 +19,6 @@ const App = () => {
     />
   )
 
-  const AsyncTagPage = props => (
-    <Async
-      load={import(/* webpackChunkName: "TagPage" */ './pages/tag')}
-      componentProps={{ ...props }}
-    />
-  )
-
   const AsyncNotFoundPage = props => (
     <Async
       load={import(/* webpackChunkName: "NotFoundPage" */ './pages/404.js')}
