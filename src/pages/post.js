@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react'
 
 import BlogPost from '../components/blog/BlogPost'
 import ErrorMessage from '../components/Error'
+import LoadingSpinner from '../components/Loading/LoadingSpinner'
 import Navbar from '../components/Navbar'
 import app from '../data/flamelink'
 
@@ -36,7 +37,7 @@ const PostPage = ({ match }) => {
     <div className='nav-margin'>
       {error && <ErrorMessage error={error}/>}
       {site && <Navbar title={site.title} />}
-      <BlogPost id={postId} {...post} />
+      {post ? <BlogPost id={postId} {...post} /> : <LoadingSpinner/>}
     </div>
   )
 }

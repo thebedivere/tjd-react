@@ -5,6 +5,7 @@ import Blog from '../components/blog/Blog'
 import ErrorMessage from '../components/Error'
 import Header from '../components/Header/'
 import Links from '../components/Links/'
+import LoadingSpinner from '../components/Loading/LoadingSpinner'
 import app from '../data/flamelink'
 
 const IndexPage = () => {
@@ -45,7 +46,7 @@ const IndexPage = () => {
       {error && <ErrorMessage error={error}/>}
       {site && <Header title={site.title} tagline={site.tagline} />}
       {links && <Links links={links} />}
-      {blog && <Blog blogPosts={blog} />}
+      {blog ? <Blog blogPosts={blog} /> : <LoadingSpinner/>}
     </>
   )
 }
