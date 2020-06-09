@@ -6,14 +6,14 @@ import { okaidia } from 'react-syntax-highlighter/dist/esm/styles/prism'
 
 SyntaxHighlighter.registerLanguage('jsx', jsx)
 
-const renderCode = ({language, value}) => <SyntaxHighlighter language={language} style={okaidia}>{value}</SyntaxHighlighter>
+const renderCode = ({ language, value }) => <SyntaxHighlighter language={language} style={okaidia}>{value}</SyntaxHighlighter>
 
 const BlogBody = ({ body }) =>
-    <ReactMarkdown 
-        source={body}
-        renderers={{
-            code: renderCode
-        }}
-        />
+  <ReactMarkdown
+    source={body}
+    renderers={{
+      code: renderCode
+    }}
+  />
 
 export default BlogBody

@@ -7,30 +7,29 @@ import app from '../data/flamelink'
 
 const PostPage = ({ firestore, info, match }) => {
   const postId = match.params.id
-  
-  const [site, setSite] = useState()
-  const [error, setError] = useState()
-  const [post, setPost] = useState()
+
+  const [ site, setSite ] = useState()
+  const [ error, setError ] = useState()
+  const [ post, setPost ] = useState()
 
   useEffect(() => {
-    app.content.get({ 
+    app.content.get({
       schemaKey: 'site',
-       fields: ['title', 'tagline']
-       })
+      fields: [ 'title', 'tagline' ]
+    })
       .then(setSite)
       .catch(setError)
   }, [])
 
-      useEffect(() => {
-      app.content.get({ 
-        schemaKey: 'blogPost',
-        entryId: postId,
-        fields: ['title', 'date', 'body', 'published', 'id']
-        })
-        .then(setPost)
-        .catch(setError)
-    }, [postId])
-
+  useEffect(() => {
+    app.content.get({
+      schemaKey: 'blogPost',
+      entryId: postId,
+      fields: [ 'title', 'date', 'body', 'published', 'id' ]
+    })
+      .then(setPost)
+      .catch(setError)
+  }, [ postId ])
 
   return (
     <div className='nav-margin'>

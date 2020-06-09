@@ -9,7 +9,7 @@ const formatDate = timestamp => isValid(timestamp) ? format(timestamp, 'MM-dd-yy
 
 const BlogPost = ({ title, id, date, author, body, published }) => {
   const formattedDate = useMemo(() => formatDate(new Date(date))
-    , [date])
+    , [ date ])
   return (
     <article>
       <header>
