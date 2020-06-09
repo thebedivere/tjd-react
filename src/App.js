@@ -31,7 +31,6 @@ const App = () => {
       <Switch>
         <Route exact path='/' component={AsyncIndexPage} />
         <Route path='/post/:id' component={AsyncPostPage} />
-        <Route path='/tag/:tag' component={AsyncTagPage} />
         <Route path='*' component={AsyncNotFoundPage} />
       </Switch>
     </Router>
